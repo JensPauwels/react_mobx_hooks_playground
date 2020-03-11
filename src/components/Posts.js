@@ -1,5 +1,5 @@
-import React from 'react';
-import { observer } from 'mobx-react-lite';
+import React, { useEffect } from 'react';
+import { useObserver, observer } from 'mobx-react-lite';
 import { getStore } from '../stores';
 
 import styles from '../assets/scss/post.module.scss';
@@ -21,8 +21,12 @@ const AddComment = observer(({ post }) => {
   )
 });
 
-const Post = observer(({ post }) => {
-  return ( 
+const Post = ({ post }) => {
+  useEffect(() => {
+    console.log('update post')
+  }, undefined)
+
+  return useObserver(() => ( 
     <article className={styles.post}>
       <div className={styles.info}>
         <span>{ post.user }</span>
@@ -48,13 +52,12 @@ const Post = observer(({ post }) => {
       </ul>
       <AddComment post={post}/>
     </article>
-  )
+  ))
+};
+
+const Posts = () => useObserver(() => {
+  const { posts } = getStore('postStore');
+  return posts.map((post, index) => <Post post={post} key={index}/>);
 });
  
-const Posts = observer(() => {
-  const { posts } = getStore('postStore');
-
-  return posts.map((post, index) => (<Post post={post} key={index}/>));
-});
-
 export default Posts;
