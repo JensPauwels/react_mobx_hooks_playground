@@ -1,10 +1,5 @@
 import { useContext } from 'react';
-
 import { storeContext } from '../context';
-
-export { default as store } from "./store";
-export { default as todoStore } from './todoStore.js'
-export { default as appStore } from './appStore.js'
 
 export const getStore = store => {
   return useContext(storeContext)[store];
@@ -22,3 +17,5 @@ export const getStores = requestedStores => {
   }, [])
 }
 
+
+export { default as postStore } from './postStore.js'
