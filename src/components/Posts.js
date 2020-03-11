@@ -2,8 +2,10 @@ import React from 'react';
 import { observer } from 'mobx-react-lite';
 import { getStore } from '../stores';
 
+import styles from '../assets/scss/post.module.scss';
+
 const Comment = ({ comment }) => (
-  <div>{ comment }</div>
+  <li>{ comment }</li>
 )
 
 const AddComment = observer(({ post }) => { 
@@ -21,7 +23,11 @@ const AddComment = observer(({ post }) => {
 
 const Post = observer(({ post }) => {
   return ( 
-    <article>
+    <article className={styles.post}>
+      <div className={styles.info}>
+        <span>{ post.user }</span>
+        <span>...</span>
+      </div>
       <figure>
         <img src={require(`../assets/images/${post.image}`)} alt={post.description} />
         <figcaption>
@@ -35,10 +41,11 @@ const Post = observer(({ post }) => {
         </figcaption>
       </figure>
 
-      {
-        post.comments.map((comment, index) => (<Comment comment={comment} key={index}/>))
-      }
-
+      <ul>
+        {
+          post.comments.map((comment, index) => (<Comment comment={comment} key={index}/>))
+        }
+      </ul>
       <AddComment post={post}/>
     </article>
   )

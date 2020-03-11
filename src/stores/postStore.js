@@ -16,6 +16,13 @@ class PostStore {
         likes: 0,
         description: 'Honda cb 550K #caferacer'
       }),
+      new Post({
+        user: 'Andere user',
+        image: 'cafe.jpg',
+        location: 'Bruges',
+        likes: 0,
+        description: 'My cafe racer'
+      }),
     ]
   };
 
