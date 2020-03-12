@@ -1,6 +1,6 @@
 import React from 'react';
 import { useObserver } from 'mobx-react-lite';
-import { getStore } from '../stores';
+import { getStore } from '../../stores';
 
 const AddPost = () => {
   const postStore = getStore('postStore');

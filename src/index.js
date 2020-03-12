@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import App from './components/App'
+import Router from './components/Router'
 import { configure } from 'mobx';
 
 configure({
@@ -9,4 +9,4 @@ configure({
 
 
 const rootElement = document.getElementById("root");
-ReactDOM.render(<App />, rootElement);
+ReactDOM.render(<Router />, rootElement);

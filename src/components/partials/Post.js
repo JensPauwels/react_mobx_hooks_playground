@@ -1,31 +1,27 @@
-import React, { useEffect } from 'react';
-import { useObserver, observer } from 'mobx-react-lite';
-import { getStore } from '../stores';
+import React from 'react';
+import { useObserver } from 'mobx-react-lite';
 
-import styles from '../assets/scss/post.module.scss';
+import styles from '../../assets/scss/post.module.scss';
 
 const Comment = ({ comment }) => (
   <li>{ comment }</li>
-)
+);
 
-const AddComment = observer(({ post }) => { 
+const AddComment = ({ post }) => { 
   const onChange = ev => {
     post.newComment = ev.target.value;
   };
 
-  return (
+  return useObserver(() => (
     <>
       <input type="text" onChange={onChange} value={post.newComment}/>
       <button onClick={post.addComment}>Add Comment</button>
     </>
-  )
-});
+  ))
+};
+
 
 const Post = ({ post }) => {
-  useEffect(() => {
-    console.log('update post')
-  }, undefined)
-
   return useObserver(() => ( 
     <article className={styles.post}>
       <div className={styles.info}>
@@ -33,7 +29,7 @@ const Post = ({ post }) => {
         <span>...</span>
       </div>
       <figure>
-        <img src={require(`../assets/images/${post.image}`)} alt={post.description} />
+        <img src={require(`../../assets/images/${post.image}`)} alt={post.description} />
         <figcaption>
           <div>
             <span>{post.description}</span>
@@ -55,9 +51,4 @@ const Post = ({ post }) => {
   ))
 };
 
-const Posts = () => useObserver(() => {
-  const { posts } = getStore('postStore');
-  return posts.map((post, index) => <Post post={post} key={index}/>);
-});
- 
-export default Posts;
+export default Post

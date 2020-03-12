@@ -1,10 +1,17 @@
-import { observable, decorate, action } from 'mobx';
+import { observable, decorate } from 'mobx';
 import { Post } from '../models';
+import { doFetch } from '../utils';
 
 class PostStore {
   constructor() {
     this.posts = [];
     this.newPost = new Post();
+    this.randomApi = '';
+  };
+
+  fetchRandomApi = async () => {
+    const result = await doFetch('https://api.chucknorris.io/jokes/random', 'GET')
+    this.randomApi = result;
   };
 
   initialize = () => {
@@ -34,7 +41,7 @@ class PostStore {
 
 decorate(PostStore, {
   posts: observable,
-  initialize: action
+  randomApi: observable,
 });
 
 export default new PostStore();
