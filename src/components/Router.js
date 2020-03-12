@@ -4,10 +4,23 @@ import {
   Overview
 } from './pages';
 
+import {
+  Footer
+} from './global';
+
+const Wrapper = Component => ({...props}) => (
+  <>
+    <main>
+      <Component {...props}/>
+    </main>
+    <Footer />
+  </>
+);
+
 const Router = () => (
   <BrowserRouter>
     <Switch>
-      <Route exact path="/" component={Overview}/>
+      <Route exact path="/" component={Wrapper(Overview)}/>
       <Route exact path="*" component={() => <Redirect to="/" />}/>
     </Switch>
   </BrowserRouter>

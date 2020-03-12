@@ -1,14 +1,12 @@
 .posts {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(1, 1fr);
   grid-gap: 30px;
 }
 
 .post {
-  background-color: #eee;
-
-  border: 1px solid #ccc;
-  margin-bottom: 50px;
+  background-color: #fff;
+  border-radius: 10px;
 }
 
 .info {
