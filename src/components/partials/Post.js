@@ -13,10 +13,10 @@ const AddComment = ({ post }) => {
   };
 
   return useObserver(() => (
-    <>
-      <input type="text" onChange={onChange} value={post.newComment}/>
-      <button onClick={post.addComment}>Add Comment</button>
-    </>
+    <div className={styles.inputs}>
+      <input type="text" onChange={onChange} value={post.newComment} placeholder="Een opmerking toevoegen..."/>
+      <button className={styles.addComment} onClick={post.addComment}>Plaats</button>
+    </div>
   ))
 };
 
@@ -26,7 +26,7 @@ const Post = ({ post }) => {
     <article className={styles.post}>
       <div className={styles.info}>
         <span>{ post.user }</span>
-        <span>...</span>
+        <i className="fas fa-ellipsis-h"></i>
       </div>
       <figure>
         <img src={require(`../../assets/images/${post.image}`)} alt={post.description} />
@@ -35,8 +35,11 @@ const Post = ({ post }) => {
             <span>{post.description}</span>
           </div>
           <div>
-            <span>Likes { post.likes }</span>
-            <button onClick={post.addLike}>Add like</button>
+            <i className={`far fa-heart ${styles.addLike}`} onClick={post.addLike} />
+            <span>{ post.likes } vinden dit leuk </span>
+            {/* <div className={styles.add} onClick={post.addLike}> */}
+            {/*   Add like */}
+            {/* </div> */}
           </div>
         </figcaption>
       </figure>

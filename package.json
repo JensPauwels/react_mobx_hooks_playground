@@ -6,6 +6,7 @@
   "keywords": [],
   "main": "src/index.js",
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.12.1",
     "mobx": "5.15.4",
     "mobx-react-lite": "1.5.2",
     "node-sass": "^4.13.1",
