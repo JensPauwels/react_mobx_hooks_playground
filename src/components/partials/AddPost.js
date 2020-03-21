@@ -1,9 +1,9 @@
 import React from 'react';
 import { useObserver } from 'mobx-react-lite';
-import { getStore } from '../../stores';
+import { useStore } from '../../hooks';
 
 const AddPost = () => {
-  const postStore = getStore('postStore');
+  const postStore = useStore('postStore');
   const { newPost } = postStore;
 
   const onChange = ev => {
