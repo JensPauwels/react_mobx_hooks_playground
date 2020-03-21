@@ -2,13 +2,13 @@ import React, { useEffect } from 'react';
 import { useObserver } from 'mobx-react-lite';
 
 import { Post } from './';
-import { getStore } from '../../stores';
+import { useStore } from '../../hooks';
 
 import styles from '../../assets/scss/post.module.scss';
 
 
 const Posts = () => {
-  const postStore = getStore('postStore');
+  const postStore = useStore('postStore');
 
   useEffect(() => {
     postStore.initialize();
